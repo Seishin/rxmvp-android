@@ -10,10 +10,10 @@ import android.widget.ListView;
 
 import com.apsoft.rxmvp.sample.R;
 import com.apsoft.rxmvp.sample.features.events.views.EventsActivity;
+import com.apsoft.rxmvp.sample.features.loading_data.views.LoadingDataActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private ListView optionsList;
     private String[] options = new String[] {"Events", "Loading Data"};
 
     @Override
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        optionsList = (ListView) findViewById(R.id.options);
+        ListView optionsList = (ListView) findViewById(R.id.options);
         optionsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options));
         optionsList.setOnItemClickListener(this);
     }
@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         switch (i) {
             case 0:
                 startActivity(new Intent(MainActivity.this, EventsActivity.class));
+                break;
+
+            case 1:
+                startActivity(new Intent(MainActivity.this, LoadingDataActivity.class));
                 break;
         }
     }

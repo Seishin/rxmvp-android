@@ -17,6 +17,8 @@
         </activity>
 
         <activity android:name=".features.events.views.EventsActivity"/>
+
+        <activity android:name=".features.loading_data.views.LoadingDataActivity"/>
     </application>
 
 </manifest>
