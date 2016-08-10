@@ -3,7 +3,15 @@ package com.apsoft.rxmvp.library.presenters;
 import com.apsoft.rxmvp.library.models.IRxModel;
 import com.apsoft.rxmvp.library.views.IRxView;
 
+import rx.Subscription;
+
 public interface IRxPresenter<T extends IRxView, E extends IRxModel> {
+    /**
+     * Add a subscription
+     *
+     * @param subscription
+     */
+    void addSubscription(Subscription subscription);
 
     /**
      * Returns a reference to the presenter's view

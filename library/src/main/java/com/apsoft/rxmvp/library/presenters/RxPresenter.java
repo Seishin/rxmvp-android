@@ -3,6 +3,8 @@ package com.apsoft.rxmvp.library.presenters;
 import com.apsoft.rxmvp.library.models.IRxModel;
 import com.apsoft.rxmvp.library.views.IRxView;
 
+import java.util.ArrayList;
+
 import rx.Subscription;
 
 public abstract class RxPresenter<T extends IRxView, E extends IRxModel> implements IRxPresenter<T, E> {
@@ -12,7 +14,7 @@ public abstract class RxPresenter<T extends IRxView, E extends IRxModel> impleme
     private T view;
     private E model;
 
-    private Subscription subscription;
+    private ArrayList<Subscription> subscriptions = new ArrayList<>(0);
 
     public RxPresenter(T view) {
         this.view = view;
@@ -21,6 +23,11 @@ public abstract class RxPresenter<T extends IRxView, E extends IRxModel> impleme
     public RxPresenter(T view, E model) {
         this.view = view;
         this.model = model;
+    }
+
+    @Override
+    public void addSubscription(Subscription subscription) {
+        subscriptions.add(subscription);
     }
 
     @Override
@@ -40,8 +47,11 @@ public abstract class RxPresenter<T extends IRxView, E extends IRxModel> impleme
 
     @Override
     public void onPause() {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
+        for (Subscription s : subscriptions) {
+            if (!s.isUnsubscribed()) {
+                s.unsubscribe();
+                subscriptions.remove(s);
+            }
         }
     }
 }
