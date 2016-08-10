@@ -1,0 +1,32 @@
+language: android
+
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-24.0.1
+    - android-24 
+
+    - sys-img-armeabi-v7a-android-24
+
+sudo: false
+
+env:
+  global:
+    # install timeout in minutes (2 minutes by default)
+    - ADB_INSTALL_TIMEOUT=8
+
+before_script:
+  - echo no | android create avd --force --name test --target android-24 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim &
+  - android-wait-for-emulator
+  - adb devices
+  - adb shell input keyevent 82 &
+
+script:
+  - echo $ADB_INSTALL_TIMEOUT
+  - android list target
+  - ./gradlew connectedAndroidTest
