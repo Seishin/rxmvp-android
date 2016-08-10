@@ -31,7 +31,7 @@ public class LoadingDataActivity extends RxActivity<LoadingDataPresenter> {
 
     @SuppressWarnings("ConstantConditions")
     private void initUI() {
-        getSupportActionBar().setTitle("Events Sample");
+        getSupportActionBar().setTitle("Loading Data Sample");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
