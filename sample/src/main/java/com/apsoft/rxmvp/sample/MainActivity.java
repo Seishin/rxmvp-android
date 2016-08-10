@@ -1,9 +1,10 @@
 package com.apsoft.rxmvp.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.apsoft.rxmvp.library.views.RxActivity;
+
+public class MainActivity extends RxActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
