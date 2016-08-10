@@ -24,3 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.1.0'
     compile 'com.github.seishin.rxbus:library:0.0.1'
 }
+
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
